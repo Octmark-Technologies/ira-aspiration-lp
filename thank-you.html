@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZJXRLD6');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <title>Thank You | IRA Aspiration</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+        }
+
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+    </style><noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style>
+    </noscript>
+
+    <script>
+        (function () {
+            try {
+                var ENDPOINT = "https://api.octmarktechnologies.com/events/pixel";
+                var CLIENT_KEY = "36c04e0a-ab6c-41d4-85f0-2aea39df450d";
+
+                var getParam = function (name) {
+                    var match = new RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+                    return match && decodeURIComponent(match[1].replace(/\+/g, " ")) || null;
+                };
+
+                var nowISO = function () { return new Date().toISOString(); };
+
+                var send = function (payload) {
+                    try {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", ENDPOINT, true);
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                        xhr.setRequestHeader("x-client-key", CLIENT_KEY);
+                        xhr.send(JSON.stringify(payload));
+                    } catch (e) { }
+                };
+
+                var sess = sessionStorage;
+                if (!sess.getItem("oct_session_id")) {
+                    sess.setItem("oct_session_id", "sess_" + Math.random().toString(36).substr(2, 9));
+                }
+                if (!sess.getItem("oct_entry_page")) {
+                    sess.setItem("oct_entry_page", window.location.pathname || "/");
+                }
+                if (!sess.getItem("oct_entry_source")) {
+                    var src = "direct";
+                    if (getParam("gclid")) src = "google_paid";
+                    else if (getParam("fbclid")) src = "meta_paid";
+                    else if (getParam("utm_source")) src = getParam("utm_source");
+                    sess.setItem("oct_entry_source", src);
+                }
+
+                var prevPage = sess.getItem("oct_last_page");
+                var step = parseInt(sess.getItem("oct_step") || "0", 10) + 1;
+                sess.setItem("oct_last_page", window.location.pathname || "/");
+                sess.setItem("oct_step", step);
+
+                var baseContext = function () {
+                    return {
+                        user_agent: navigator.userAgent,
+                        page: { url: window.location.href, referrer: document.referrer || null },
+                        utm: {
+                            source: getParam("utm_source"), medium: getParam("utm_medium"),
+                            campaign: getParam("utm_campaign"), term: getParam("utm_term"),
+                            content: getParam("utm_content")
+                        },
+                        click_ids: { gclid: getParam("gclid"), fbclid: getParam("fbclid") },
+                        journey: {
+                            session_id: sess.getItem("oct_session_id"),
+                            entry_source: sess.getItem("oct_entry_source"),
+                            entry_page: sess.getItem("oct_entry_page"),
+                            previous_page: prevPage,
+                            current_page: window.location.pathname || "/",
+                            step: step
+                        }
+                    };
+                };
+
+                var sendEvent = function (name) {
+                    send({
+                        source: "pixel",
+                        event: { name: name, timestamp: nowISO() },
+                        user: { hashed: { email: window.__oct_email || null, phone: window.__oct_phone || null } },
+                        context: baseContext()
+                    });
+                };
+
+                var isInput = function (el) {
+                    if (!el || !el.tagName) return false;
+                    var t = el.tagName.toLowerCase();
+                    return t === "input" || t === "textarea" || t === "select";
+                };
+
+                sendEvent("PageView");
+
+                var fired = {};
+                window.addEventListener("scroll", function () {
+                    var h = document.documentElement.scrollHeight || document.body.scrollHeight;
+                    var s = Math.round((window.pageYOffset + window.innerHeight) / h * 100);
+                    if (s >= 25 && !fired[25]) { fired[25] = true; sendEvent("Scroll_25"); }
+                    if (s >= 50 && !fired[50]) { fired[50] = true; sendEvent("Scroll_50"); }
+                    if (s >= 75 && !fired[75]) { fired[75] = true; sendEvent("Scroll_75"); }
+                    if (s >= 100 && !fired[100]) { fired[100] = true; sendEvent("Scroll_100"); }
+                });
+
+                setTimeout(function () { sendEvent("TimeOnPage_15s"); }, 15000);
+                setTimeout(function () { sendEvent("TimeOnPage_30s"); }, 30000);
+                setTimeout(function () { sendEvent("TimeOnPage_60s"); }, 60000);
+
+                document.addEventListener("click", function (e) {
+                    var el = e.target;
+                    if (!el) return;
+                    var href = el.getAttribute && el.getAttribute("href");
+                    var tag = el.tagName ? el.tagName.toLowerCase() : "";
+                    if (href) {
+                        if (href.indexOf("wa.me") !== -1 || href.indexOf("whatsapp") !== -1) { sendEvent("WhatsApp_Click"); }
+                        else if (href.indexOf("tel:") === 0) { sendEvent("Call_Click"); }
+                        else if (href.indexOf("mailto:") === 0) { sendEvent("Email_Click"); }
+                        else { sendEvent("Deep_Link_Click"); }
+                    }
+                    if (tag === "button" || tag === "a") { sendEvent("CTA_Click"); }
+                }, true);
+
+                var formStarted = false;
+                document.addEventListener("focus", function (e) {
+                    if (isInput(e.target) && !formStarted) { formStarted = true; sendEvent("Form_Start"); }
+                }, true);
+                document.addEventListener("change", function (e) { if (isInput(e.target)) { sendEvent("Form_Field_Change"); } }, true);
+                document.addEventListener("submit", function () { sendEvent("Form_Submit_Attempt"); }, true);
+            } catch (e) { console.warn("Octrackit pixel error", e); }
+        })();
+    </script>
+
+    <style amp-custom>
+        :root {
+            --primary: #4e2a48;
+            --accent: #D4AF37;
+            --white: #ffffff;
+            --bg-light: #FAFAFA;
+        }
+
+        body {
+            font-family: 'Almarena Neue', sans-serif;
+            background-color: var(--primary);
+            background-image: radial-gradient(circle at 50% -20%, #753d6a 0%, var(--primary) 70%);
+            color: var(--white);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .thank-you-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            padding: 80px 50px;
+            border-radius: 4px;
+            max-width: 700px;
+            width: 90%;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .thank-you-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .thank-you-container h1 {
+            color: var(--accent);
+            font-size: 56px;
+            margin-bottom: 24px;
+            font-family: 'Almarena Neue', sans-serif;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .thank-you-container p {
+            font-size: 19px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            color: #E2E2E2;
+            font-weight: 300;
+        }
+
+        .thank-you-container strong {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 20px 48px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 60px 25px;
+            }
+            .thank-you-container h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18092327335"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18092327335');
+    </script>
+
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZJXRLD6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <div class="thank-you-container">
+        <h1>Thank You!</h1>
+        <p>Your details have been successfully received. We appreciate your interest in the exclusive <strong>Landlord Share</strong>
+            inventory at <span style="font-family: 'Almarena Neue', sans-serif; font-weight: 700;">IRA Asp<span
+                    style="color: var(--accent);">ira</span>tion</span>.</p>
+        <p>Our premier luxury consultants will reach out shortly to guide you through your future home.</p>
+
+        <a href="IRA%20Aspiration%20final-4th%20April-2022.pdf" download class="btn">Download Brochure &rarr;</a>
+        <br><br>
+        <a href="index.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">&larr; Return to Home</a>
+        <span style="color: rgba(255,255,255,0.2); margin: 0 10px;">|</span>
+        <a href="privacy-policy.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Privacy Policy</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZJXRLD6');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | IRA Aspiration</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4e2a48;
+            --accent: #D4AF37;
+            --white: #ffffff;
+            --bg-light: #F9F9F9;
+            --text-dark: #1A1A1A;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 25px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .content-box {
+            background: var(--white);
+            padding: 60px;
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--accent);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .contact-info {
+            background: #f8f8f8;
+            padding: 30px;
+            border-left: 4px solid var(--accent);
+            margin-top: 40px;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-btn:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .content-box {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+        }
+    <script>
+        (function () {
+            try {
+                /* =============================
+                   CONFIG
+                ============================= */
+                var ENDPOINT = "https://api.octmarktechnologies.com/events/pixel";
+                var CLIENT_KEY = "36c04e0a-ab6c-41d4-85f0-2aea39df450d";
+
+                /* =============================
+                   HELPERS (ES5 ONLY)
+                ============================= */
+                var getParam = function (name) {
+                    var match = new RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+                    return match && decodeURIComponent(match[1].replace(/\+/g, " ")) || null;
+                };
+
+                var nowISO = function () {
+                    return new Date().toISOString();
+                };
+
+                var send = function (payload) {
+                    try {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", ENDPOINT, true);
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                        xhr.setRequestHeader("x-client-key", CLIENT_KEY);
+                        xhr.send(JSON.stringify(payload));
+                    } catch (e) { }
+                };
+
+                /* =============================
+                   SESSION + JOURNEY STATE
+                ============================= */
+                var sess = sessionStorage;
+
+                if (!sess.getItem("oct_session_id")) {
+                    sess.setItem(
+                        "oct_session_id",
+                        "sess_" + Math.random().toString(36).substr(2, 9)
+                    );
+                }
+
+                if (!sess.getItem("oct_entry_page")) {
+                    sess.setItem("oct_entry_page", window.location.pathname || "/");
+                }
+
+                if (!sess.getItem("oct_entry_source")) {
+                    var src = "direct";
+                    if (getParam("gclid")) src = "google_paid";
+                    else if (getParam("fbclid")) src = "meta_paid";
+                    else if (getParam("utm_source")) src = getParam("utm_source");
+                    sess.setItem("oct_entry_source", src);
+                }
+
+                var prevPage = sess.getItem("oct_last_page");
+                var step = parseInt(sess.getItem("oct_step") || "0", 10) + 1;
+
+                sess.setItem("oct_last_page", window.location.pathname || "/");
+                sess.setItem("oct_step", step);
+
+                /* =============================
+                   CONTEXT BUILDER
+                ============================= */
+                var baseContext = function () {
+                    return {
+                        user_agent: navigator.userAgent,
+                        page: {
+                            url: window.location.href,
+                            referrer: document.referrer || null
+                        },
+                        utm: {
+                            source: getParam("utm_source"),
+                            medium: getParam("utm_medium"),
+                            campaign: getParam("utm_campaign"),
+                            term: getParam("utm_term"),
+                            content: getParam("utm_content")
+                        },
+                        click_ids: {
+                            gclid: getParam("gclid"),
+                            fbclid: getParam("fbclid")
+                        },
+                        journey: {
+                            session_id: sess.getItem("oct_session_id"),
+                            entry_source: sess.getItem("oct_entry_source"),
+                            entry_page: sess.getItem("oct_entry_page"),
+                            previous_page: prevPage,
+                            current_page: window.location.pathname || "/",
+                            step: step
+                        }
+                    };
+                };
+
+                var sendEvent = function (name) {
+                    send({
+                        source: "pixel",
+                        event: {
+                            name: name,
+                            timestamp: nowISO()
+                        },
+                        user: {
+                            hashed: {
+                                email: window.__oct_email || null,
+                                phone: window.__oct_phone || null
+                            }
+                        },
+                        context: baseContext()
+                    });
+                };
+
+                var isInput = function (el) {
+                    if (!el || !el.tagName) return false;
+                    var t = el.tagName.toLowerCase();
+                    return t === "input" || t === "textarea" || t === "select";
+                };
+
+                /* =============================
+                   L1 — PAGE VIEW
+                ============================= */
+                sendEvent("PageView");
+
+                /* =============================
+                   L2 — SCROLL DEPTH
+                ============================= */
+                var fired = {};
+                window.addEventListener("scroll", function () {
+                    var h = document.documentElement.scrollHeight || document.body.scrollHeight;
+                    var s = Math.round((window.pageYOffset + window.innerHeight) / h * 100);
+
+                    if (s >= 25 && !fired[25]) { fired[25] = true; sendEvent("Scroll_25"); }
+                    if (s >= 50 && !fired[50]) { fired[50] = true; sendEvent("Scroll_50"); }
+                    if (s >= 75 && !fired[75]) { fired[75] = true; sendEvent("Scroll_75"); }
+                    if (s >= 100 && !fired[100]) { fired[100] = true; sendEvent("Scroll_100"); }
+                });
+
+                /* =============================
+                   L2 — TIME ON PAGE
+                ============================= */
+                setTimeout(function () { sendEvent("TimeOnPage_15s"); }, 15000);
+                setTimeout(function () { sendEvent("TimeOnPage_30s"); }, 30000);
+                setTimeout(function () { sendEvent("TimeOnPage_60s"); }, 60000);
+
+                /* =============================
+                   L2 — CLICKS
+                ============================= */
+                document.addEventListener("click", function (e) {
+                    var el = e.target;
+                    if (!el) return;
+
+                    var href = el.getAttribute && el.getAttribute("href");
+                    var tag = el.tagName ? el.tagName.toLowerCase() : "";
+
+                    if (href) {
+                        if (href.indexOf("wa.me") !== -1 || href.indexOf("whatsapp") !== -1) {
+                            sendEvent("WhatsApp_Click");
+                        } else if (href.indexOf("tel:") === 0) {
+                            sendEvent("Call_Click");
+                        } else if (href.indexOf("mailto:") === 0) {
+                            sendEvent("Email_Click");
+                        } else {
+                            sendEvent("Deep_Link_Click");
+                        }
+                    }
+
+                    if (tag === "button" || tag === "a") {
+                        sendEvent("CTA_Click");
+                    }
+                }, true);
+
+                /* =============================
+                   L2 — FORM INTENT (POPUPS SAFE)
+                ============================= */
+                var formStarted = false;
+
+                document.addEventListener("focus", function (e) {
+                    if (isInput(e.target) && !formStarted) {
+                        formStarted = true;
+                        sendEvent("Form_Start");
+                    }
+                }, true);
+
+                document.addEventListener("change", function (e) {
+                    if (isInput(e.target)) {
+                        sendEvent("Form_Field_Change");
+                    }
+                }, true);
+
+                document.addEventListener("submit", function () {
+                    sendEvent("Form_Submit_Attempt");
+                }, true);
+
+            } catch (e) {
+                console.warn("Octrackit pixel error", e);
+            }
+        })();
+    </script>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18092327335"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18092327335');
+    </script>
+
+
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZJXRLD6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+        <header>
+            <img src="logo-ira-reality.png" alt="IRA Realty Logo" class="logo">
+            <h1>Privacy Policy</h1>
+            <div class="last-updated">Last Updated: <span id="current-date"></span></div>
+        </header>
+
+        <div class="content-box">
+            <p>At <strong>IRA Aspiration</strong>, we are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This policy outlines how we collect, use, and safeguard the data you provide to us.</p>
+
+            <h2>1. Information We Collect</h2>
+            <p>We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about our projects, specifically the Landlord Share inventory at IRA Aspiration. This includes:</p>
+            <ul>
+                <li>Name and contact details (Phone Number).</li>
+                <li>Your preferences regarding unit configurations (e.g., 2 BHK, 3 BHK).</li>
+                <li>Digital identifiers (IP address, browser type) collected through automated tracking technologies.</li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>The information we collect is used solely for the following purposes:</p>
+            <ul>
+                <li>To provide you with project details, floor plans, and pricing recommendations.</li>
+                <li>To facilitate communication with our luxury consultants/advisors.</li>
+                <li>To automate follow-ups and service updates via our secure internal systems.</li>
+                <li>To comply with legal obligations and RERA requirements.</li>
+            </ul>
+
+            <h2>3. Data Sharing and Disclosure</h2>
+            <p>We do not sell or rent your personal data to third parties. Your information is processed internally and solely used to streamline your request for information. We maintain strict confidentiality and data protection standards for all information handled.</p>
+
+            <h2>4. Cookies and Tracking</h2>
+            <p>Our website uses essential cookies and analytics tags (Google Analytics, Meta Pixel) to improve user experience and measure campaign performance. You can manage your cookie preferences through your browser settings.</p>
+
+            <h2>5. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy or how we handle your data, please contact our administrative team:</p>
+            <div class="contact-info">
+                <strong>Phone:</strong> <a href="tel:7569615653">+91 75696 15653</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2026. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Automatic Date Update
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', options);
+    </script>
+</body>
+
+</html>
